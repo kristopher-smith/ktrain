@@ -944,17 +944,17 @@ class TransformersPreprocessor(TextPreprocessor):
                 if self.name == "bert" and "japanese" not in model_name:
                     from transformers import BertTokenizerFast
 
-                    self.tok = BertTokenizerFast.from_pretrained(model_name)
+                    self.tok = BertTokenizerFast.from_pretrained(model_name, use_fast=False)
                 elif self.name == "distilbert":
                     from transformers import DistilBertTokenizerFast
 
-                    self.tok = DistilBertTokenizerFast.from_pretrained(model_name)
+                    self.tok = DistilBertTokenizerFast.from_pretrained(model_name, use_fast=False)
                 elif self.name == "roberta":
                     from transformers import RobertaTokenizerFast
 
-                    self.tok = RobertaTokenizerFast.from_pretrained(model_name)
+                    self.tok = RobertaTokenizerFast.from_pretrained(model_name, use_fast=False)
                 else:
-                    self.tok = self.tokenizer_type.from_pretrained(model_name)
+                    self.tok = self.tokenizer_type.from_pretrained(model_name, use_fast=False)
             except:
                 error_msg = (
                     f"Could not load tokenizer from model_name: {model_name}. "
